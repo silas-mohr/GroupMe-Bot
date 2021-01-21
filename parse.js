@@ -10,7 +10,7 @@
 var HTTPS = require('https');
 
 var botID = process.env.BOT_ID;
-var botName = "BrickBot";
+var botName = "TestBot";
 
 var textCommands = {
   // List of all the commands the bot responds with text to
