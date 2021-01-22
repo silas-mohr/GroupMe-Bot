@@ -155,7 +155,6 @@ async function postWrapper(response) {
     if (!found) {
         messageArray.push(message.substr(0, maxWidth));
         message = message.substr(maxWidth);
-
     }
   }
 
