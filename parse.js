@@ -10,7 +10,7 @@
 var HTTPS = require('https');
 
 var botID = process.env.BOT_ID;
-var botName = "ThotBot 2.0";
+var botName = "Test Bot";
 
 var textCommands = {
   // List of all the commands the bot responds with text to
