@@ -43,9 +43,11 @@ var imageCommands = {
 
 function respond() {
   // Check if someone sent a (potential) command by starting a message with the character "!"
-  var request = JSON.parse(this.req.chunks[0]), botRegex = /^!/;
+  var request = JSON.parse(this.req.chunks[0]);
+  var botRegex = /^!/;
 
-  console.log("Message: '" + request.text + "' From User ID: ");
+  console.log("Message: '" + request.text + "'");
+  console.log("From User ID: " + request.sender_id);
   if(request.name != botName && request.text && botRegex.test(request.text)) {
     this.res.writeHead(200);
 
