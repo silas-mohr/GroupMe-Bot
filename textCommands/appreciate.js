@@ -13,7 +13,7 @@ messages = [
 	"here is a special thank you from my heart to someone who is special in my life. To someone who means a lot to me. A special thank you from me to you, for making life always feel like new."
 ];
 
-export function runFunction(commands, args, request) {
+exports.runFunction = function runFunction(commands, args, request) {
 	var name = "";
 
 	if (args.length == 0)
@@ -27,4 +27,4 @@ export function runFunction(commands, args, request) {
 
 
 	return [name + ", " + messages[Math.floor(Math.random() * messages.length)], "", ""];
-}
+};

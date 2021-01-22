@@ -1,6 +1,6 @@
 var cool = require('cool-ascii-faces');
 
-export function runFunction(commands, args, request) {
+exports.runFunction = function runFunction(commands, args, request) {
 	var botResponse, type, link;
 
 	botResponse = cool();

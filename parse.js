@@ -7,7 +7,7 @@
  * Then the output is posted to the GroupMe group using https requests.
  */
 
-import { request as _request } from 'https';
+var HTTPS = require('https');
 
 var botID = process.env.BOT_ID;
 var botName = "TestBot";
@@ -155,6 +155,7 @@ async function postWrapper(response) {
     if (!found) {
         messageArray.push(message.substr(0, maxWidth));
         message = message.substr(maxWidth);
+
     }
   }
 
@@ -212,7 +213,7 @@ function postMessage(response) {
   console.log('sending ' + botResponse + ' to ' + botID);
 
   // Sends https request to the GroupMe api
-  botReq = _request(options, function(res) {
+  botReq = HTTPS.request(options, function(res) {
       
       // If everything worked, do nothing
       if(res.statusCode == 202) {
@@ -243,5 +244,4 @@ function postMessage(response) {
 }
 
 // Allows other files to access respond()
-const _respond = respond;
-export { _respond as respond };
+exports.respond = respond;

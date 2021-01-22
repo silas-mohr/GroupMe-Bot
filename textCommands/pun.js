@@ -236,6 +236,6 @@ puns = [
 "It takes guts to make a sausage."
 ];
 
-export function runFunction(commands, args, request) {
+exports.runFunction = function runFunction(commands, args, request) {
 	return [puns[Math.floor(Math.random() * puns.length)], "", ""];
 };

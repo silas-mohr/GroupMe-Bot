@@ -26,7 +26,7 @@ ships = [
 	"you've turned my life 🔄⬆⬇"
 ]
 
-export function runFunction(commands, args, request) {
+exports.runFunction = function runFunction(commands, args, request) {
 	var name = "";
 	var message = ships[Math.floor(Math.random() * ships.length)];
 

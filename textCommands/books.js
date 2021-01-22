@@ -1,4 +1,4 @@
-export function runFunction(commands, args, request) {
+exports.runFunction = function runFunction(commands, args, request) {
 	var output = "";
 	
 	books.forEach(function (book, index) {
