@@ -1,4 +1,4 @@
-exports.runFunction = function runFunction(commands, args, request) {
+export function runFunction(commands, args, request) {
 	var output = "";
 	output += "Commands That Send Images\n";
 	output += "---------------------------------+\n"

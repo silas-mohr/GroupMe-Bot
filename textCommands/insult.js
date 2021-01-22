@@ -12,6 +12,6 @@ messages = [
     "why, you stuck-up, half-witted, scruffy-looking nerf herder!"
 ];
 
-exports.runFunction = function runFunction(commands, args, request) {
+export function runFunction(commands, args, request) {
     return [request.name + ", " + messages[Math.floor(Math.random() * messages.length)], "", ""];
 };

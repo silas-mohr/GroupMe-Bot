@@ -1,4 +1,4 @@
-exports.runFunction = function runFunction(commands, args, request) {
+export function runFunction(commands, args, request) {
     return [messages[Math.floor(Math.random() * messages.length)], "", ""];
 };
 

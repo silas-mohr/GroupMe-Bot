@@ -1,4 +1,4 @@
-exports.runFunction = function runFunction(commands, args, request) {
+export function runFunction(commands, args, request) {
   var botResponse, type, link;
 
   botResponse = "";
@@ -6,7 +6,7 @@ exports.runFunction = function runFunction(commands, args, request) {
   link = images[Math.floor(Math.random() * images.length)]
 
   return [botResponse, type, link];
-};
+}
 
 
 images = [
