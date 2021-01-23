@@ -8,7 +8,6 @@
  */
 
 var HTTPS = require('https');
-const rp = require('request-promise');
 
 var botID = process.env.BOT_ID;
 var botName = "Test Bot";
@@ -114,14 +113,42 @@ function respond() {
   }
 }
 
-async function like (message) {
+function like (message) {
   console.log("I tried to like the message");
   try {
-    await rp({
+    options = {
       method: 'POST',
       url: `https://api.groupme.com/v3/messages/98385592752/${message.id}/like?token=${process.env.ACCESS_TOKEN}`
+    };
+
+    botReq = HTTPS.request(options, function(res) {
+        
+        // If everything worked, do nothing
+        if(res.statusCode == 202) {
+          //neat
+        } 
+        
+        // If there is an error, send the error to the console
+        else {
+          console.log('rejecting bad status code ' + res.statusCode);
+        }
     });
-  } catch(err) {
+
+    // If an error happens, send an error message to the console
+    botReq.on('error', function(err) {
+      console.log('error posting message '  + JSON.stringify(err));
+    });
+
+    // If the requests timesout, send an error message to the console
+    botReq.on('timeout', function(err) {
+      console.log('timeout posting message '  + JSON.stringify(err));
+    });
+
+    // Write body to botReq and end https request
+    botReq.end();
+
+  } 
+  catch(err) {
     console.error(err);
   }
 }
@@ -264,9 +291,6 @@ function postMessage(response) {
 
   // Write body to botReq and end https request
   botReq.end(JSON.stringify(body));
-
-  // Return dummy value for postWrapper
-  return true
 }
 
 // Allows other files to access respond()
