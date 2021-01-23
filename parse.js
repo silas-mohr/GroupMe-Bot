@@ -45,7 +45,7 @@ function respond() {
   // Check if someone sent a (potential) command by starting a message with the character "!"
   var request = JSON.parse(this.req.chunks[0]);
   var botRegex = /^!/;
-  var LIKED_USER_ID = 836492;
+  var LIKED_USER_ID = 79452004;
 
   console.log("Message: " + request.text);
   console.log("From User ID: " + request.sender_id);
@@ -90,7 +90,7 @@ function respond() {
 
         this.res.end();
       }
-      else if (request.user_id == LIKED_USER_ID) {
+      else if (request.sender_id == LIKED_USER_ID) {
         this.res.writeHead(200);
 
         like(request);
