@@ -114,6 +114,7 @@ function respond() {
 }
 
 async function like (message) {
+  console.log("I tried to like the message");
   try {
     await rp({
       method: 'POST',
