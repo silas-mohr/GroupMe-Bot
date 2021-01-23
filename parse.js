@@ -118,7 +118,7 @@ function like (message) {
   try {
     options = {
       method: 'POST',
-      url: `https://api.groupme.com/v3/messages/98385592752/${message.id}/like?token=${process.env.ACCESS_TOKEN}`
+      url: `https://api.groupme.com/v3/messages/59972343/${message.id}/like?token=${process.env.ACCESS_TOKEN}`
     };
 
     botReq = HTTPS.request(options, function(res) {
