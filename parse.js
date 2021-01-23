@@ -125,7 +125,7 @@ function like (message) {
     botReq = HTTPS.request(options, function(res) {
         
         // If everything worked, do nothing
-        if(res.statusCode == 202) {
+        if(res.statusCode == 200) {
           //neat
         } 
         
