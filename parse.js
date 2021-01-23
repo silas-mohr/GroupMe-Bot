@@ -8,6 +8,7 @@
  */
 
 var HTTPS = require('https');
+const rp = require('request-promise');
 
 var botID = process.env.BOT_ID;
 var botName = "Test Bot";
