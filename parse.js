@@ -45,8 +45,9 @@ function respond() {
   // Check if someone sent a (potential) command by starting a message with the character "!"
   var request = JSON.parse(this.req.chunks[0]);
   var botRegex = /^!/;
+  var LIKED_USER_ID = 836492;
 
-  console.log("Message: '" + request.text + "'");
+  console.log("Message: " + request.text);
   console.log("From User ID: " + request.sender_id);
   if(request.name != botName && request.text && botRegex.test(request.text)) {
     this.res.writeHead(200);
@@ -89,6 +90,13 @@ function respond() {
 
         this.res.end();
       }
+      else if (request.user_id == LIKED_USER_ID) {
+        this.res.writeHead(200);
+
+        like(request);
+
+        this.res.end();
+      }
       else {
         // If no command is said, don't do anything
         console.log("don't care");
@@ -102,6 +110,17 @@ function respond() {
       this.res.writeHead(200);
       this.res.end();
     }
+  }
+}
+
+async function like (message) {
+  try {
+    await rp({
+      method: 'POST',
+      url: `https://api.groupme.com/v3/messages/98385592752/${message.id}/like?token=${process.env.ACCESS_TOKEN}`
+    });
+  } catch(err) {
+    console.error(err);
   }
 }
 
@@ -165,7 +184,8 @@ async function postWrapper(response) {
 
   // Loop through array of messages, waiting for the last one to post before posting the next one
   for (var i = 0; i <= messageArray.length-1; i++) {
-    const posted = await postMessage([messageArray[i], response[1], response[2]]);
+    postMessage([messageArray[i], response[1], response[2]]);
+    await new Promise(r => setTimeout(r, 400));
   }
 
   // Post what ever is left after wrapping the message
@@ -240,7 +260,7 @@ function postMessage(response) {
     console.log('timeout posting message '  + JSON.stringify(err));
   });
 
-  // End https request
+  // Write body to botReq and end https request
   botReq.end(JSON.stringify(body));
 
   // Return dummy value for postWrapper
