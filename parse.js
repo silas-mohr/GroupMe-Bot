@@ -118,7 +118,7 @@ function like (message) {
   try {
     options = {
       hostname: 'api.groupme.com',
-      path: '/v3/messages/59972343/' + message.id + '/like?token=' + process.env.ACCESS_TOKEN,
+      path: '/v3/messages/59972343/' + message.id + '/like', //?token=' + process.env.ACCESS_TOKEN,
       method: 'POST'
     };
 
