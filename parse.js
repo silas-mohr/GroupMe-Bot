@@ -10,7 +10,7 @@
 var HTTPS = require('https');
 
 var botID = process.env.BOT_ID;
-var botName = "Test Bot";
+var botName = "ThotBot 2.0";
 
 var textCommands = {
   // List of all the commands the bot responds with text to
@@ -18,21 +18,29 @@ var textCommands = {
   love : "Tells you you're loved.",
   police : "Don't you dare say it.",
   marielle : "Marielle B is always watching.",
+  // titty : "Sweet dreams!",
   pun : "Insert something punny here.",
+  stepsis : "👀",
   ship : "A nice message for your ship. (!ship NAME to direct the message at someone)",
   appreciate : "You are appreciated. (!appreciate NAME to appreciate someone else)",
   tuck : "Get some good night wishes",
   vote : "It's your civic duty",
+  //mom : "A message from mom",
+  dick : "A big, hard joke.",
   insult : "Ok loser.",
+  //sean : "👀",
   cool : "ThotBot's a cool guy.",
   haddock : "Captain Haddock would like to have a word with you.",
   books : "Book recommendations!",
   venmo : "🥺",
-  pressed : "pReSSeD"
+  pressed : "pReSSeD",
+  address : "A spreadsheet of addresses.",
+  map: "housing locations"
 };
 
 var imageCommands = {
   // List of all the commands the bot responds with (an) image(s) to
+  enselfie: "A blank selfie for everyone.",
   pocket : "Get back in there!",
   jail : "You know what you did",
   regret : "Even I realize that message was stupid",
@@ -40,6 +48,11 @@ var imageCommands = {
   michelle : "Have your favorite first lady scold someone",
   ap: "Someone asked again."
 };
+
+var hiddenCommands = {
+  // Commands that don't show up in help
+  unsend: "You can't."
+}
 
 function respond() {
   // Check if someone sent a (potential) command by starting a message with the character "!"
@@ -118,7 +131,7 @@ function like (message) {
   try {
     options = {
       hostname: 'api.groupme.com',
-      path: '/v3/messages/59972343/' + message.id + '/like', //?token=' + process.env.ACCESS_TOKEN,
+      path: '/v3/messages/59972343/' + message.id + '/like?token=' + process.env.ACCESS_TOKEN,
       method: 'POST'
     };
 
@@ -163,7 +176,7 @@ function checkCommand(command, request) {
   command = args.shift();
 
   // Checks if the command is in either list of commands and runs it if it is, says it is not a valid command if not
-  if (command in textCommands) {
+  if (command in textCommands || command in hiddenCommands) {
     return runCommand(command, args, request, "text");
   }
   else if (command in imageCommands) {
