@@ -176,7 +176,7 @@ function checkCommand(command, request) {
   command = args.shift();
 
   // Checks if the command is in either list of commands and runs it if it is, says it is not a valid command if not
-  if (command in textCommands || command in hiddenCommands || command in imageCommands) {
+  if (command in textCommands || command in hiddenCommands) {
     return runCommand(command, args, request, "text");
   }
   else if (command in imageCommands) {
