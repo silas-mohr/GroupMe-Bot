@@ -1,4 +1,4 @@
-messages = [
+insults = [
     "looks ugly.",
     "I'll teach you some manners, you blithering bombadier! I'll soon deflate you!. Ectoplasm!",
     "you ante-diluvian bulldozer!",
@@ -12,6 +12,24 @@ messages = [
     "why, you stuck-up, half-witted, scruffy-looking nerf herder!"
 ];
 
+// exports.runFunction = function runFunction(commands, args, request) {
+//     return [request.name + ", " + insults[Math.floor(Math.random() * insults.length)], "", ""];
+// };
+
 exports.runFunction = function runFunction(commands, args, request) {
-    return [request.name + ", " + messages[Math.floor(Math.random() * messages.length)], "", ""];
+	var name = "";
+	var message = insults[Math.floor(Math.random() * insults.length)];
+
+	if (args.length == 0) {
+		message = message.charAt(0).toUpperCase() + message.substr(1);
+		return [request.name + ", " + message, "", ""];
+	}
+	else {
+		args.forEach(function (word, index) {
+			name += word.charAt(0).toUpperCase() + word.substr(1) + " ";
+		})
+		name = name.slice(0, -1);
+
+		return [name + ", " + message, "", ""];
+	}
 };
