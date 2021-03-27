@@ -30,7 +30,7 @@ exports.runFunction = function runFunction(commands, args, request) {
 	var name = "";
 	var message = ships[Math.floor(Math.random() * ships.length)];
 
-	if (args.length == 0) {
+	if (args.length === 0) {
 		message = message.charAt(0).toUpperCase() + message.substr(1);
 		return [message, "", ""];
 	}

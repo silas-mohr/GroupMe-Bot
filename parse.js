@@ -169,9 +169,10 @@ function like (message) {
 
 // Checks if command is valid
 function checkCommand(command, request) {
+  // Removes the "!" from the beginning of the command
   command = command.substr(1);
 
-  // Removes the "!" from the beginning of the command
+  // Splits the message up into individual words using spaces
   args = command.split(" ");
   command = args.shift();
 

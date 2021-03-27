@@ -16,7 +16,7 @@ messages = [
 exports.runFunction = function runFunction(commands, args, request) {
 	var name = "";
 
-	if (args.length == 0)
+	if (args.length === 0)
 		name = request.name;
 	else {
 		args.forEach(function (word, index) {
